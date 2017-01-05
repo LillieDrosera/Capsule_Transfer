@@ -1,0 +1,23 @@
+#capsuleFinal{
+	margin: auto;
+
+	animation: trajectoire 3s ease-out 0.2s;
+	transform: rotate(180deg);
+
+	animation-fill-mode: forwards;
+
+	transform-origin: 50% 50%;
+
+}
+
+#tubeComplet{
+	transform: translate(200rem,0);
+}
+
+@keyframes trajectoire {
+	0% {transform: translate(-100rem,0); }
+	10% {transform: translate(0rem,0) ;}
+	90% {transform: translate(0rem,0) ;}
+	100% {transform: translate(200rem,0) ;}
+
+}
