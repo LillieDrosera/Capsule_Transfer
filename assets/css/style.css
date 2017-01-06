@@ -3,6 +3,9 @@ html, body, main, header, footer,h1, h2, aside, section {
 	padding: 0;
 	box-sizing: border-box;
 }
+body{
+    overflow: hidden;
+}
 
 main{
 	display: flex;
@@ -166,6 +169,20 @@ svg{
     border-radius: 5px;
     border: 1px solid #48A0BF;
     padding: 0.75em;
+}
+
+.capsuleMove{
+    transform-origin: center ;
+    animation-name: animCapsuleMove;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes animCapsuleMove{
+    0%{transform: rotate(0deg) translateY(0vw) translateX(0vh);}
+    25%{transform: rotate(90deg) translateY(-10vw) translateX(5vh);}
+    100%{transform: rotate(90deg) translateY(-35vw) translateX(5vh);}
 }
 
 

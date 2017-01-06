@@ -231,6 +231,7 @@
             toggleHide('zoneUploadFile');
             toggleHide('zoneEmail');
             document.getElementById("blueText").innerHTML="Where should we send it ?";
+            document.getElementById("homePageCapsule").classList.add("capsuleMove");
         }
             
   
