@@ -80,7 +80,7 @@ function sendEmail($emailP,$emailD,$urlPageFile){
     $destinataire = $emailD;
     $sujet = 'Upload file';// sujet du mail 
 
-    $message = "<h1>Bonjour</h1> <p>un utilisateur vous a envoyer un fichier rendez-vous sur la page suivante pour télécharger votre fichier : url </p>"; // message contenue dans le mail
+    $message = "<h1>Bonjour</h1> <p>un utilisateur vous a envoyer un fichier rendez-vous sur la page suivante pour télécharger votre fichier : <a href=$urlPageFile>$urlPageFile</a> </p>"; // message contenue dans le mail
     
     $headers = "From: $emailP " . "\r\n" .
      "Reply-To: $emailP " . "\r\n" .
