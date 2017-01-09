@@ -32,8 +32,8 @@
         $sql = connect();
 
         $test = Get_info($_REQUEST['Id_Folder'], $sql);
-        $urlTest=getUrlPageFile($test);
-        echo $test['Name']; 
+        echo $test['Id_Folder'];
+        
        
 
   ?>
@@ -140,7 +140,7 @@
         <div id="mainFinal">
             <!-- bouton DOWNLOAD -->
             <div>
-                <a class="btnClassic" href="<?php echo'http://'. $_SERVER['SERVER_NAME'].'/'.PATH_APP.'/'.$test['Id_Folder'].$test['Name']; ?>">Open it!</a>
+                <a class="btnClassic" href="save_dowload.php?folder_id='<?phpecho $test['Id_Folder'];?>'">Open it!</a>
                 <!-- <input id="btnDownloadId" class="btnClassic" type="submit" name="btnDownload" value="Open it!" onclick="downloadFile();"> -->
             </div>
             
