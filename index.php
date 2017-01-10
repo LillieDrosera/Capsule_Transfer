@@ -15,10 +15,6 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/styleBtn.css">
   
-
-
-
-
   </head>
 
 
@@ -129,9 +125,9 @@
             
             <aside>
                 <div>
-                    <p>On en chie comme des morses sur ce projet à la con, mais laissez nous au moins triper sur les input text qui ne servent à rien ça sera bien gentil.</p>
-                    <p>A vrai dire on ne sait pas quoi écrire ici alors autant y balourder des conneries, nan ?</p>
-                    <p>Ni! Ni! Ni! Ni! …Are you suggesting that coconuts migrate? Now, look here, my good man. Found them? In Mercia?! The coconut's tropical!</p>
+                    <p>At Capsule Transfer &amp; Co, we like to send our message the good ol' way. </p>
+                    <p>If you want a safe a steady way to send your files, documents, pictures of your guinea pig, we don't mind ... just use one of our capsule.</p>
+                    <p>There is nothing like pneumatic tubes !</p>
                 </div>
             </aside>
             
@@ -147,27 +143,40 @@
 
 
                     <!-- On limite le fichier à 100Ko -->
-                    <!-- <input type="hidden" name="MAX_FILE_SIZE" value="100000"> -->
+                    <input type="hidden" name="MAX_FILE_SIZE" value="100000">
 
 
                     <!-- input file fichierUp > passe le nom du fichier choisi -->
                     <input name="fichierUp" id="btnUpload" type="file" class="hide" onchange="masqueZone('zoneLoadId','btnUpload');">
 
                     <!-- bouton ENVOI -->
+                    
+                    <input id="btnCancelId" onclick="ftnCancelUpload();" class="btnGrey opacity" type="button" name="cancel" value="No wait ...">
+                    
                     <input id="btnShootId" onclick="ftnUpload();" class="btnClassic opacity" type="button" name="uploader" value="Yup, shoot !">
+                    
+                    
                 </div>
                 
 
                 <!--  -->
                 <div id="zoneEmail" class="inputMail hide">
-                    <p>E-mail of your contact :</p>
-                    <input name="mailDestinataire" id="contactMail" class="inputText" type="email">
-                    <p>Your e-mail :</p>
-                    <input name="mailExpe" class="inputText" type="email">
-                    <input id="btnSendId" class="btnClassic" type="submit" name="envoyer" value="Send there !">
+                    
+                    
+                    <p id='pContactMail' name="E-mail of your contact">E-mail of your contact :</p>
+                    <input name="mailDestinataire" id="contactMail" class="inputText" type="email" onchange="return checkBtnEmail('contactMail','pContactMail','Contact mail');">
+                    
+                    
+                    <p id="pMyMail" name="Your e-mail">Your e-mail :</p>
+                    <input name="mailExpe" id="myMail" class="inputText" type="email" onchange="return checkBtnEmail('myMail','pMyMail','Your e-mail');">
+                    
+                    
+                    <input id="btnSendId" class="btnClassic btnDisabled" type="submit" name="envoyer" value="Send there !" disabled>
                 </div>
                 
             </form>
+            
+            <aside></aside>
             
 			
 		</section>
@@ -181,9 +190,13 @@
     
     <script>
     
+        
         function ftnDoor() 
             { 
                 document.getElementById("capsuleDoor").classList.toggle("closeDoor");
+                document.getElementById("zoneLoadId").classList.toggle("moveDash");
+                
+                document.getElementById("capsuleOpening").classList.toggle("capsuleOpeningHide");
             }
         
         
@@ -193,38 +206,46 @@
                 document.getElementById(elemId).classList.toggle("hide");
             }
         
+        
         function toggleOpacity(elemId)
             {
                 //affiche l'element dont l'Id est passée en param
                 document.getElementById(elemId).classList.toggle("opacity");
             }
 
-        
+            
         function masqueZone(zoneDashed, inputId)
             {
             //verif si inputId est rempli. 
             //Si oui > masque zone pointillé et affiche btn.
             //Si non > rien
-
-
+                
             var choosenFile = document.getElementById(inputId).value;
+                console.log(choosenFile);
 
             if(choosenFile != "") 
                 {
                 	//supprime pointillé et affiche bouton                   
                     toggleOpacity('btnShootId');
+                    toggleOpacity('btnCancelId');
                     document.getElementById("zoneLoadId").classList.add("borderUpLoad");
                     document.getElementById("blueText").innerHTML="all good ?";
+                    document.getElementById('btnCancelId').disabled = false;
+                    document.getElementById('btnShootId').disabled = false;
                 }
             else 
                 {
                     //masque bouton et on affiche pointillé
                     document.getElementById("zoneLoadId").classList.remove("borderUpLoad");
                     document.getElementById("btnShootId").classList.add("opacity");
+                    document.getElementById("btnCancelId").classList.add("opacity");
                     document.getElementById("blueText").innerHTML="drag your files inside the capsule or click on it";
+                    document.getElementById('btnCancelId').disabled = true;
+                    document.getElementById('btnShootId').disabled = true;
                 }
 
             }
+        
         
         function ftnUpload()
         {
@@ -233,8 +254,69 @@
             document.getElementById("blueText").innerHTML="Where should we send it ?";
             document.getElementById("homePageCapsule").classList.add("capsuleMove");
         }
+        
+        
+        function ftnCancelUpload()
+            {   toggleOpacity('btnShootId');
+                toggleOpacity('btnCancelId');
+             document.getElementById("zoneLoadId").classList.remove("borderUpLoad");   
+             document.getElementById('btnUpload').value="";
+             document.getElementById("blueText").innerHTML="drag your files inside the capsule or click on it";
+             document.getElementById('btnCancelId').disabled = true;
+             document.getElementById('btnShootId').disabled = true;
+            }
+        
+        
+        function checkEmail(idMailInput, pIdMailInput, pMailInputText) 
+            {
+                var email = document.getElementById(idMailInput);
+                var filter = new RegExp('^[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*@[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*[\.]{1}[a-z]{2,6}$', 'i');
+                
+                if(email.value!="")
+                    {
+                        if (!filter.test(email.value)) 
+                            {    
+                                document.getElementById(pIdMailInput).classList.remove("inputValid");
+                                document.getElementById(pIdMailInput).classList.add("inputNotValid");
+                                document.getElementById(idMailInput).classList.remove("zoneInputValid");
+                                document.getElementById(idMailInput).classList.add("zoneInputNotValid");
+                                document.getElementById(pIdMailInput).innerHTML=pMailInputText+" is not valid";
+                                return false;
+                            }
+                        else
+                            {
+                                document.getElementById(pIdMailInput).classList.remove("inputNotValid");
+                                document.getElementById(pIdMailInput).classList.add("inputValid");
+                                document.getElementById(idMailInput).classList.remove("zoneInputNotValid");
+                                document.getElementById(idMailInput).classList.add("zoneInputValid");
+                                document.getElementById(pIdMailInput).innerHTML=pMailInputText+" is valid";
+                                return true;
+                            }
+                    }
+            }
+        
+        
+        function checkBtnEmail()
+            {   
+                var resultContactMail = checkEmail('contactMail','pContactMail','Contact mail');
+                var resultMyMail = checkEmail('myMail','pMyMail','Your e-mail');
+
+                if(resultContactMail == true && resultMyMail == true)
+                    {
+                        document.getElementById('btnSendId').disabled = false;
+                        document.getElementById('btnSendId').classList.remove("btnDisabled");
+                    }
+                else
+                    {
+                        document.getElementById('btnSendId').disabled = true;
+                        document.getElementById('btnSendId').classList.add("btnDisabled");
+                    }
+            }
             
   
     </script>
 </body>
 </html>
+
+
+

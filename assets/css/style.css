@@ -12,8 +12,6 @@ main{
 	flex-direction: row;
 	justify-content: space-between;
 	flex-wrap: wrap;
-    /*overflow: hidden;*/
-
 	background-color: #a4e3f9;
 	background-image:url('../img/background.svg');
 	background-position:center center;
@@ -52,18 +50,18 @@ header{
 
 section{
     display: flex;
-    flex-basis: 58%;
     justify-content: space-between;
     z-index: 1;
     height: 70vh;
+    width: 100vw;
     padding-top: 2.5vh;
     padding-bottom: 2.5vh;
-	text-align: justify;
-
 }
 
     aside{
-        padding: 3vh 8vw 0 8vw;
+        flex-basis: 35%;
+        padding: 0 0vw 0 6vw;
+        font-size: 1.2em;
         overflow: hidden;
     }
 
@@ -71,6 +69,60 @@ section{
         text-align: center;
     }
 
+.upload{
+    animation-name: zoneGlow;
+    animation-duration: 0.8s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    border: 1em dashed #48A0BF;
+    border-radius: 1em;
+    opacity: 0.5;
+    cursor: pointer;
+    height: 52vh;
+    transition: 0.5s;
+    min-width: 19vw;
+}
+
+.closeDoor{
+    transform-origin: center;
+    transform: rotateY(180deg);
+    transition: 0.5s;
+}
+
+.moveDash{
+    min-width: 14vw;
+    transition: 0.5s;
+}
+
+.capsuleOpeningHide{
+    fill: #E6E6E6;
+    transition: 1.3s;
+}
+
+.inputMail{
+    min-width: 14vw;
+    padding: 5vh;
+    border: 1em dashed rgba(72, 160, 191, 0.5);
+    border-radius: 1em;
+    display: flex;
+    flex-flow: column;
+}
+
+.inputMail p{
+    font-family: 'league_spartanregular';
+    font-size: 0.8em;
+    margin: 0 0 0.25vh 0;
+    color: rgba(72, 160, 191, 0.75);
+}
+
+.inputText{
+    font-family: 'gilroylight';
+    margin-bottom: 5vh;
+    border-radius: 5px;
+    border: 1px solid #48A0BF;
+    padding: 0.75em;
+}
 
 footer{
     
@@ -93,20 +145,6 @@ svg{
 }
 
 
-.upload{
-    animation-name: zoneGlow;
-    animation-duration: 0.8s;
-    animation-timing-function: ease-out;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    border: 1em dashed #48A0BF;
-    border-radius: 1em;
-    opacity: 0.5;
-    cursor: pointer;
-    width: 14vw;
-    height: 52vh;
-}
-
 .borderUpLoad{
     border: 1em solid  rgba(0, 0, 0, 0);
 
@@ -123,13 +161,6 @@ svg{
     transition: 0.5s;
 }
 
-.closeDoor{
-    transform-origin: center;
-    transform: rotateY(180deg);
-    transition: 0.5s;
-}
-
-
 
 .btnClassic{
 	background-color: #ff5738;
@@ -145,31 +176,53 @@ svg{
     transition: 0.5s;
 }
 
-
-.inputMail{
-    margin-top: 5vh;
-    padding-top: 5vh;
-    padding-bottom: 3vh;
-    border: 1em dashed rgba(72, 160, 191, 0.5);
-    border-radius: 1em;
+.btnClassic:hover{
+    background-color: #FF8D78;
+    transition: 0.2s;
 }
 
-.inputMail p{
-    font-family: 'league_spartanregular';
-    font-size: 0.8em;
-    text-align: left;
-    padding: 0;
-    margin: 0 0 0.25vh 0;
-    color: rgba(72, 160, 191, 0.75);
+.btnGrey{
+	background-color: #B8B8B8;
+	color: #fff;
+	font-family: 'league_spartanregular';
+	font-size: 1em;
+	padding: 7px 25px ;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+	text-transform: uppercase;
+    transition: 0.5s;
 }
 
-.inputText{
-    font-family: 'gilroylight';
-    margin-bottom: 5vh;
-    border-radius: 5px;
-    border: 1px solid #48A0BF;
-    padding: 0.75em;
+.btnGrey:hover{
+    transition:0.2s;
+    background-color: #C8C8C8;
 }
+
+.btnDisabled{
+    background-color: #C8C8C8
+}
+
+.btnDisabled:hover{
+    background-color: #C8C8C8
+}
+
+.inputNotValid{
+    color:#FF9E38 !important;
+}
+.inputValid{
+    color:#80D808 !important;
+}
+
+.zoneInputNotValid{
+    border:1px solid #FF9E38;
+}
+
+.zoneInputValid{
+    border:1px solid #80D808;
+}
+
 
 .capsuleMove{
     transform-origin: center ;
@@ -184,8 +237,6 @@ svg{
     25%{transform: rotate(90deg) translateY(-10vw) translateX(5vh);}
     100%{transform: rotate(90deg) translateY(-35vw) translateX(5vh);}
 }
-
-
 
 
 
