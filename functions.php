@@ -82,7 +82,14 @@ function sendEmail($emailP,$emailD,$urlPageFile){
     $destinataire = $emailD;
     $sujet = 'Upload file';// sujet du mail 
 
-    $message = "<h1>Bonjour $emailD</h1> <p>$emailPVous a envoyé des fichiers en utilisant Capsule Transfert</p> <p>Rendez-vous sur la page suivante pour télécharger votre fichier : <a href=$urlPageFile>$urlPageFile</a> </p>"; // message contenue dans le mail
+    //$message = "<h1>Bonjour $emailD</h1> <p>$emailPVous a envoyé des fichiers en utilisant Capsule Transfert</p> <p>Rendez-vous sur la page suivante pour télécharger votre fichier : <a href=$urlPageFile>$urlPageFile</a> </p>"; // message contenue dans le mail
+    
+    $message = file_get_contents('message.html');
+    $message = str_replace('{{emailP}}', $emailP, $message);
+    $message = str_replace('{{emailD}}', $emailD, $message);
+    $message = str_replace('{{urlPageFile}}', $urlPageFile, $message);
+    
+   
     
     $headers = "From: $emailP " . "\r\n" .
      "Reply-To: $emailP " . "\r\n" .
@@ -98,7 +105,7 @@ function sendEmail($emailP,$emailD,$urlPageFile){
 // enregistre les informations sur le fichier dans la base de données
 function Save_Info($infoFile, $sql){
 
-      $request_1 = 'INSERT INTO `Capsule_File`(`Id_Folder`,`Name`,`Format`,`Date_Upload`,`Validity`,`Nb_Download`,`Size`,`Id_user`,`emailExpe`,`emailDesti`) VALUES ( :Id_Folder, :Name, :Format, NULL, NULL, NULL, :Size, NULL, :emailExpe,:emailDesti)';
+      $request_1 = 'INSERT INTO `Capsule_File`(`Id_Folder`,`Name`,`Format`,`Validity`,`Nb_Download`,`Size`,`Id_user`,`emailExpe`,`emailDesti`) VALUES ( :Id_Folder, :Name, :Format, NULL, NULL, :Size, NULL, :emailExpe,:emailDesti)';
       $sth = $sql->prepare($request_1);
 
            $sth->bindParam(':Id_Folder',$infoFile['Id_Folder'],PDO::PARAM_STR);

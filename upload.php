@@ -10,6 +10,8 @@ $emailDestinataire=$_REQUEST["mailDestinataire"];
 
 
 $infoFile = uploadFile();// appel de la fonction uploadFile.
+$infoFile['mailExpediteur']=$emailExpediteur;
+$infoFile['mailDestinataire']=$emailDestinataire;
 
 // Test  sur le resultat de l'appel de la fonction 
 if(isset($infoFile['error'])) {

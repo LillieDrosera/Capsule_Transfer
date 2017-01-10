@@ -10,10 +10,13 @@
 	<meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" /><!-- à modifier -->
 	
 	<title>Capsule Transfer</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico" />
   
 	<link rel="stylesheet" type="text/css" href="assets/font/fonts.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/styleBtn.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styleBtn.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/styleFooter.css">
   
   </head>
 
@@ -117,7 +120,7 @@
 		<header>
             <div class="color"></div>
             <h1>Capsule Transfer</h1>
-            <h2 id="blueText">drag your files inside the capsule or click on it</h2>
+            <h2 id="blueText">Store your file inside the capsule by clicking on it</h2>
 		</header>
         
         <section>
@@ -184,7 +187,7 @@
         
 		
 		<footer>
-
+            <?php include('footer.php'); ?>
 		</footer>
 	</main>
     
@@ -239,7 +242,7 @@
                     document.getElementById("zoneLoadId").classList.remove("borderUpLoad");
                     document.getElementById("btnShootId").classList.add("opacity");
                     document.getElementById("btnCancelId").classList.add("opacity");
-                    document.getElementById("blueText").innerHTML="drag your files inside the capsule or click on it";
+                    document.getElementById("blueText").innerHTML="Store your file inside the capsule by clicking on it";
                     document.getElementById('btnCancelId').disabled = true;
                     document.getElementById('btnShootId').disabled = true;
                 }
@@ -261,7 +264,7 @@
                 toggleOpacity('btnCancelId');
              document.getElementById("zoneLoadId").classList.remove("borderUpLoad");   
              document.getElementById('btnUpload').value="";
-             document.getElementById("blueText").innerHTML="drag your files inside the capsule or click on it";
+             document.getElementById("blueText").innerHTML="Store your file inside the capsule by clicking on it";
              document.getElementById('btnCancelId').disabled = true;
              document.getElementById('btnShootId').disabled = true;
             }

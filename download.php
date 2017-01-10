@@ -5,9 +5,12 @@
     <meta charset="utf-8">
     
     <title>Capsule Transfer - download</title>
+ 
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico" />
   
     <link rel="stylesheet" type="text/css" href="assets/font/fonts.css">
     <link rel="stylesheet" type="text/css" href="assets/css/animationFinal.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styleFooter.css">
     <link rel="stylesheet" type="text/css" href="assets/css/styleDL.css">
     <script type="text/javascript"></script>
 
@@ -150,7 +153,7 @@
         
         
         <footer>
-
+            <?php include('footer.php'); ?>
         </footer>
     </main>
     

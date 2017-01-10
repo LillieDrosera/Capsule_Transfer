@@ -122,11 +122,13 @@ svg{
     -webkit-border-radius: 5px;
     border-radius: 5px; 
     text-transform: uppercase;
+    z-index: 10;
     
 }
 .btnClassic:hover{
     box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.3);
     transition: 0.3s;
+    z-index: 10;
 }
 
 
@@ -139,9 +141,11 @@ svg{
 	flex-direction: column;
 	justify-content: center;
 
+
 }
 
 #mainFinal div {
+    border:1px solid red;
 	align-self: center;
 	z-index: 1;
 
@@ -158,4 +162,7 @@ svg{
 
  	height: 20vh;
 
+}
+a, a:hover, a:active, a:focus{
+    text-decoration: none;
 }

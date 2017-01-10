@@ -177,8 +177,8 @@ svg{
 }
 
 .btnClassic:hover{
-    background-color: #FF8D78;
-    transition: 0.2s;
+    box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.3);
+    transition: 0.3s;
 }
 
 .btnGrey{
@@ -196,8 +196,8 @@ svg{
 }
 
 .btnGrey:hover{
-    transition:0.2s;
-    background-color: #C8C8C8;
+    box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.3);
+    transition: 0.3s;
 }
 
 .btnDisabled{
