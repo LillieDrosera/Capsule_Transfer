@@ -11,7 +11,7 @@ function uploadFile() {
 
     $Id_Folder = createFolder();//name folder
     $file = basename($_FILES['fichierUp']['name']); //name file
-    $Size_Max = 100000;//pb a regler plutard !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    $Size_Max = 1000000;//pb a regler plutard !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     $size= filesize($_FILES['fichierUp']['tmp_name']);//size file
     $extensions = array('.php');
     $extend = strrchr($_FILES['fichierUp']['name'], '.'); //extension
@@ -76,30 +76,29 @@ function getUrlPageFile($infoFile) {
 }
 
 // function qui envoie le mail en prenam en compte le mail de l'emetteur et celui du récepteur.
-function sendEmail($emailD,$emailP,$urlPageFile){
+function sendEmail($emailP,$emailD,$urlPageFile){ 
 
     // Adresse email du destinataire
     $destinataire = $emailD;
-    $sujet = 'Upload file';// sujet du mail
+    $sujet = 'Upload file';// sujet du mail 
 
-    $message = "<h1>Bonjour</h1> <p>un utilisateur vous a envoyer un fichier rendez-vous sur la page suivante pour télécharger votre fichier : url </p>"; // message contenue dans le mail
-
+    $message = "<h1>Bonjour $emailD</h1> <p>$emailPVous a envoyé des fichiers en utilisant Capsule Transfert</p> <p>Rendez-vous sur la page suivante pour télécharger votre fichier : <a href=$urlPageFile>$urlPageFile</a> </p>"; // message contenue dans le mail
+    
     $headers = "From: $emailP " . "\r\n" .
      "Reply-To: $emailP " . "\r\n" .
      "MIME-Version: 1.0" . "\r\n".
-     "Content-type: text/html; charset=UTF-8" . "\r\n".
+     "Content-type: text/html; charset=UTF-8" . "\r\n". 
      'X-Mailer: PHP/' . phpversion();
-
+    
     // Fonction principale qui envoi l'email
     mail($destinataire, $sujet, $message, $headers);
-
+      
 }
 
 // enregistre les informations sur le fichier dans la base de données
 function Save_Info($infoFile, $sql){
-  echo "test";
 
-      $request_1 = 'INSERT INTO `Capsule_File`(`Id_Folder`,`Name`,`Format`,`Date_Upload`,`Validity`,`Nb_Download`,`Size`,`Id_user`,`emailExpe`,`emailDesti`) VALUES ( :Id_Folder, :Name, :Format, NULL, NULL, NULL, :Size, :emailExpe,:emailDesti)';
+      $request_1 = 'INSERT INTO `Capsule_File`(`Id_Folder`,`Name`,`Format`,`Date_Upload`,`Validity`,`Nb_Download`,`Size`,`Id_user`,`emailExpe`,`emailDesti`) VALUES ( :Id_Folder, :Name, :Format, NULL, NULL, NULL, :Size, NULL, :emailExpe,:emailDesti)';
       $sth = $sql->prepare($request_1);
 
            $sth->bindParam(':Id_Folder',$infoFile['Id_Folder'],PDO::PARAM_STR);
@@ -122,7 +121,6 @@ function Get_info($Id_Folder, $sql){
         $sth->bindParam(':var',$Id_Folder,PDO::PARAM_STR);
         $sth->execute();
         $table= $sth->fetchAll(PDO::FETCH_ASSOC); // fetch renvoi un tableau associatif contenant les différentes valeurs capter par la requête SQL//
-        print_r($table);
         return $table[0];
     }
 

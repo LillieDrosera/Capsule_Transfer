@@ -32,7 +32,6 @@
         $sql = connect();
 
         $test = Get_info($_REQUEST['Id_Folder'], $sql);
-        echo $test['Id_Folder'];
         
        
 

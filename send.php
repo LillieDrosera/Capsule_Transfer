@@ -8,24 +8,22 @@
   
     <link rel="stylesheet" type="text/css" href="assets/font/fonts.css">
     <link rel="stylesheet" type="text/css" href="assets/css/animationSend.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/styleDL.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/styleSend.css">
     <script type="text/javascript"></script>
 
   </head>
   <script type="text/javascript">
-      function downloadFile(){
-        console.log("what's up?");
-
-        fetch('test.php')
-        .then(res => res.text()) // on récupère le corps au format text.
-        .then(text => {
-
-        document.querySelector("#textZone").innerHTML=text;
-        });
-
-      }
-
   </script>
+
+  <?php
+      require '.init.php'; //nécésite la présence d'un fichier avec vos identifiants de BDD avec des variables constantes//
+      include 'functions.php';
+      $sql = connect();
+
+      $info = Get_info($_REQUEST['Id_Folder'], $sql);
+
+      $destinataire = $info['emailDesti']; //adresse du destinataire
+  ?>
 
    
 <body>    
@@ -153,27 +151,36 @@
 
         <header>
 
-            <div class="color"></div>
-            <h1>Capsule Transfer</h1>
-            <h2>Your file has been loaded</h2>
+          <div class="color"></div>
+          <h1>Capsule Transfer</h1>
+          <h2>Your file has been loaded</h2>
+          
+
 
         </header>
         
         <div id="mainFinal">
-            <!-- bouton DOWNLOAD -->
+          <div > 
+            <input type="text" class="inputUrl" value="<?php echo getUrlPageFile($info);?>">
+          </div>
 
+          <div class="text">
+              <p>An email has been send to : <?php echo $destinataire; ?></p>
+              <p>Thank you for using Capsule Transfer.</p>
+          </div>
+          
+          <div>
             
-            <div>
-                <p>An email has been send to : </p>
-                <p>Thank you for using Capsule Transfer.</p>
-            </div>
-
+            <!-- bouton HOME -->
+           <!--  <a id="btnShootId" onclick="ftnUpload();"type="button" name="uploader" value="more files to send?"> -->
+            <a class="btnClassic opacity"  href="index.php">More files to send?</a>
+          </div>
 
         </div>
         
         
         <footer>
-
+        <?php include('footer.php'); ?>
         </footer>
     </main>
     

@@ -30,7 +30,7 @@ else {
     }
 
     //header('Location: end.php?folder_id='.$infoFile['Id_Folder']);
-    header('Location: send.php?folder_id='.$infoFile['Id_Folder']);
+    header('Location: send.php?Id_Folder='.$infoFile['Id_Folder']);
 
 }
     

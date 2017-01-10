@@ -147,7 +147,7 @@
 
 
                     <!-- On limite le fichier à 100Ko -->
-                    <input type="hidden" name="MAX_FILE_SIZE" value="100000">
+                    <!-- <input type="hidden" name="MAX_FILE_SIZE" value="100000"> -->
 
 
                     <!-- input file fichierUp > passe le nom du fichier choisi -->
