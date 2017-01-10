@@ -1,0 +1,43 @@
+html, body, main, header, footer,h1, h2, aside, section {
+	margin:0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+main{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	background-color: #a4e3f9;
+	background-image:url('../img/background.svg');
+	background-position:center center;
+	background-size: cover;
+	font-family: 'gilroylight';
+	color:white;
+
+	width: 100vw;
+	height: 100vh;
+}
+
+footer{
+    display: flex;
+    justify-content: space-between;
+}
+
+footer p{
+    margin: 0.5vw;
+    color: #ffffff;
+    opacity: 0.4;
+    
+}
+
+#footerIconsZone{
+    display: flex;
+    margin-right: 0.5vw;
+}
+
+.footerIcons img{
+    margin: 0.5vh;
+    width: 1.8vw;
+}
